@@ -30,6 +30,13 @@ async def on_voice_state_update(member, before, after):
         if member.id == 823778651681193984 and len(after.channel.members) == 1:
             msg = f"三田が現れた！"
             send_notify(msg)
+    elif before.channel is not None and after.channel is not None:
+        if member.id == 918743342374854657 and len(after.channel.members) > 1 :
+            msg = f"ゆうなが参戦した！"
+            send_notify(msg)
+        elif member.id == 1200611206382243933 and len(after.channel.members) > 1:
+            msg = f"もっさんが参戦した！"
+            send_notify(msg)
 
 @client.event
 async def on_presence_update(before, after):
