@@ -40,21 +40,4 @@ async def on_voice_state_update(member, before, after):
                 msg = f"もっさんが参戦した！"
                 send_notify(msg)
 
-@client.event
-async def on_presence_update(before, after):
-    target_user_id = 491861700962942976  # こなかのID
-    if after.id != target_user_id:
-        return
-
-    before_games = {a.name for a in before.activities if a.type == discord.ActivityType.playing}
-    after_games = {a.name for a in after.activities if a.type == discord.ActivityType.playing}
-
-    new_games = after_games - before_games
-
-    if new_games:
-        game_list = ', '.join(new_games)
-        msg = f"古中がゲームを始めた！"
-        msg += f"{game_list}"
-        send_notify(msg)
-
 client.run(TOKEN)
