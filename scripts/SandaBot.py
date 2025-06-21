@@ -17,10 +17,8 @@ def send_notify(message):
     channel_id = 1329714791442284566  # SandaBotの通知用チャンネルID
     channel = client.get_channel(channel_id)
     if channel:
-        mention = f"@everyone"
-        send_msg = f"{mention} {message}"
         import asyncio
-        asyncio.run_coroutine_threadsafe(channel.send(send_msg), client.loop)
+        asyncio.run_coroutine_threadsafe(channel.send(message), client.loop)
     else:
         print(f"チャンネルが見つかりません。通知を送信できません。")
 
@@ -29,7 +27,7 @@ async def on_voice_state_update(member, before, after):
     # 入室
     if before.channel is None and after.channel is not None:
         if member.id == 823778651681193984 and len(after.channel.members) == 1:
-            msg = f"三田が現れた！"
+            msg = f"@everyone 三田が現れた！"
             send_notify(msg)
     # チャンネル移動 or 既に入っているチャンネルでの状態変化
     elif before.channel is not None and after.channel is not None:
