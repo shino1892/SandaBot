@@ -26,17 +26,21 @@ def send_notify(message):
 
 @client.event
 async def on_voice_state_update(member, before, after):
+    # 入室
     if before.channel is None and after.channel is not None:
         if member.id == 823778651681193984 and len(after.channel.members) == 1:
             msg = f"三田が現れた！"
             send_notify(msg)
+    # チャンネル移動 or 既に入っているチャンネルでの状態変化
     elif before.channel is not None and after.channel is not None:
-        if member.id == 918743342374854657 and len(after.channel.members) > 1 :
-            msg = f"ゆうなが参戦した！"
-            send_notify(msg)
-        elif member.id == 1200611206382243933 and len(after.channel.members) > 1:
-            msg = f"もっさんが参戦した！"
-            send_notify(msg)
+        # チャンネルが変わった場合のみ通知
+        if before.channel != after.channel:
+            if member.id == 918743342374854657 and len(after.channel.members) > 1:
+                msg = f"ゆうなが参戦した！"
+                send_notify(msg)
+            elif member.id == 1200611206382243933 and len(after.channel.members) > 1:
+                msg = f"もっさんが参戦した！"
+                send_notify(msg)
 
 @client.event
 async def on_presence_update(before, after):
