@@ -37,5 +37,11 @@ async def on_voice_state_update(member, before, after):
         elif member.id == 1200611206382243933 and len(after.channel.members) > 1:
             msg = f"もっさんが参戦した！"
             send_notify(msg)
+        elif member.id == 491861700962942976 and len(after.channel.members) > 1:
+            msg = f"こなかが参戦した！"
+            send_notify(msg)
+        elif member.id == 1401544325497884865 and len(after.channel.members) > 1:
+            msg = f"いいんちょーが三田を殴りに来た！"
+            send_notify(msg)
 
 client.run(TOKEN)
